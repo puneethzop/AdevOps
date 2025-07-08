@@ -1,23 +1,28 @@
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: go-http-deployment
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-http-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-http
+  template:
+    metadata:
+      labels:
         app: go-http
-    template:
-      metadata:
-        labels:
-          app: go-http
-      spec:
-        containers:
-          - name: go-http
-            image: go-http-server:1.1
-            imagePullPolicy: Never
-            ports:
-              - containerPort: 8000
-            envFrom:
-              - configMapRef:
-                  name: test-service-env
+    spec:
+      containers:
+        - name: go-http
+          image: go-http-server:1.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: test-service-env
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "500m"
