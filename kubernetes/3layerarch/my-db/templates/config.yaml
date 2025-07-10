@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-service-env
+data:
+  DB_HOST: "mysql-service"
+  DB_USER: "root"
+  DB_PASSWORD: "{{ .Values.mysqlRootPassword }}"
+  DB_NAME: "{{ .Values.mysqlDatabase }}"
+  DB_PORT: "3306"
+  DB_DIALECT: "mysql"

@@ -35,7 +35,7 @@ func (h *Handler) CreateUser(ctx *gofr.Context) (interface{}, error) {
 		return nil, err
 	}
 
-	return "error", nil
+	return "User Created", nil
 }
 
 // GetUser godoc
