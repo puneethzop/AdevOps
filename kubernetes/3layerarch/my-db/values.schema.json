@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "image": {
+      "type": "string"
+    },
+    "containerPort": {
+      "type": "integer"
+    },
+    "mysqlRootPassword": {
+      "type": "string"
+    },
+    "mysqlDatabase": {
+      "type": "string"
+    }
+  },
+  "required": ["replicaCount", "image", "containerPort", "mysqlRootPassword", "mysqlDatabase"]
+}

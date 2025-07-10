@@ -18,16 +18,6 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: {{ .Values.containerPort }}
-          env:
-            - name: DB_HOST
-              value: "{{ .Values.config.DB_HOST }}"
-            - name: DB_USER
-              value: "{{ .Values.config.DB_USER }}"
-            - name: DB_PASSWORD
-              value: "{{ .Values.config.DB_PASSWORD }}"
-            - name: DB_NAME
-              value: "{{ .Values.config.DB_NAME }}"
-            - name: DB_PORT
-              value: "{{ .Values.config.DB_PORT }}"
-            - name: DB_DIALECT
-              value: "{{ .Values.config.DB_DIALECT }}"
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapName }}

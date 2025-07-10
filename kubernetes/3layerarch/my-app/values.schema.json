@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "image": {
+      "type": "string"
+    },
+    "containerPort": {
+      "type": "integer"
+    },
+    "nodePort": {
+      "type": "integer"
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": { "type": "string" }
+          }
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "cpu": { "type": "string" }
+          }
+        }
+      }
+    },
+    "configMapName": {
+      "type": "string",
+      "description": "Name of existing ConfigMap to mount as environment variables"
+    },
+    "hpa": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "minReplicas": { "type": "integer" },
+        "maxReplicas": { "type": "integer" },
+        "targetCPUUtilizationPercentage": { "type": "integer" }
+      },
+      "required": ["enabled"]
+    }
+  },
+  "required": ["replicaCount", "image", "containerPort", "configMapName"]
+}
